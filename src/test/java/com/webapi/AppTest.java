@@ -89,5 +89,13 @@ public class AppTest
 		token = Testlogin.login(url, username, password);
 		TestFetchOrderHistoryByOwnerCode.testfetchorderhistorybyownercode(platform, uriParams, token, tradeDate);
 	}
+	public void test00() {
+		int a=0;
+		int b=1;
+		assertEquals(1,a+b);
+	}
+	public void test01() {
+		assertTrue(true);
+	}
 	
 }
