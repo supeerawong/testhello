@@ -101,4 +101,21 @@ public class AppTest
 		token = Testlogin.login(url, username, password);
 		TestNewBulkOrder.testNewBulkOrder(url, uriParams, token, sourceId, gatewayRefId, destRefId, brokerCode, destSystem, msgType, department, tradeEngine, securityCode, counterPartyCode, ownerCode, investTxType, tradeDate, settleDate, userId, isLocked, status, sourceRefId, sendOrderId);
 	}
+	public void testCancelBulkOrder() throws Exception {
+		uriParams.put("market", market);
+		uriParams.put("ownerCode", ownerCode);
+		uriParams.put("counterPartyCode", counterPartyCode);
+		uriParams.put("securityCode", securityCode);
+		token = Testlogin.login(url, username, password);
+		TestCancelBulkOrder.testCancelBulkOrder(url, uriParams, token, sourceId, gatewayRefId, destRefId, brokerCode, destSystem, msgType, department, tradeEngine, securityCode, counterPartyCode, ownerCode, investTxType, tradeDate, settleDate, userId, isLocked, status, sourceRefId, sendOrderId);
+	}
+	public void testfetchorderhistorybyownercode() throws Exception {
+		uriParams.put("market", market);
+		uriParams.put("ownerCode", ownerCode);
+		uriParams.put("counterPartyCode", counterPartyCode);
+		uriParams.put("securityCode", securityCode);
+		token = Testlogin.login(url, username, password);
+		TestFetchOrderHistoryByOwnerCode.testfetchorderhistorybyownercode(platform, uriParams, token, tradeDate);
+	}
+	
 }
