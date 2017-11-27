@@ -3,6 +3,15 @@ package com.webapi;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.json.JSONException;
+
+import com.example.demo.TestCancelBulkOrder;
+import com.example.demo.TestFetchOrderByOwnerCode;
+import com.example.demo.TestFetchOrderHistoryByOwnerCode;
+import com.example.demo.TestNewBulkOrder;
+import com.example.demo.Testlogin;
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 /**
  * Hello world!
  *
@@ -51,8 +60,17 @@ public class App
 	static String portfoliocode = "FI-HTM-GOV";
 	static String ownercode = "APPLE";
 	
-    public static void main( String[] args )
+    public static void main( String[] args ) throws Exception
     {
-        System.out.println( "Hello World!" );
+    	uriParams.put("market", market);
+		uriParams.put("ownerCode", ownerCode);
+		uriParams.put("counterPartyCode", counterPartyCode);
+		uriParams.put("securityCode", securityCode);
+		token = Testlogin.login(url, username, password);
+		TestNewBulkOrder.testNewBulkOrder(url, uriParams, token, sourceId, gatewayRefId, destRefId, brokerCode, destSystem, msgType, department, tradeEngine, securityCode, counterPartyCode, ownerCode, investTxType, tradeDate, settleDate, userId, isLocked, status, sourceRefId, sendOrderId);
+		TestCancelBulkOrder.testCancelBulkOrder(url, uriParams, token, sourceId, gatewayRefId, destRefId, brokerCode, destSystem, msgType, department, tradeEngine, securityCode, counterPartyCode, ownerCode, investTxType, tradeDate, settleDate, userId, isLocked, status, sourceRefId, sendOrderId);
+		TestFetchOrderByOwnerCode.testfetchorderbyownercode(platform, uriParams, token, tradeDate);
+		TestFetchOrderHistoryByOwnerCode.testfetchorderhistorybyownercode(platform, uriParams, token, tradeDate);
+
     }
 }
