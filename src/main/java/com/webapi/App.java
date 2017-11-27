@@ -5,11 +5,6 @@ import java.util.Map;
 
 import org.json.JSONException;
 
-import com.example.demo.TestCancelBulkOrder;
-import com.example.demo.TestFetchOrderByOwnerCode;
-import com.example.demo.TestFetchOrderHistoryByOwnerCode;
-import com.example.demo.TestNewBulkOrder;
-import com.example.demo.Testlogin;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 /**
