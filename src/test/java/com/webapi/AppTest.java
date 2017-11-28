@@ -121,4 +121,7 @@ public class AppTest
 		sum = 1+2+3+4+5+6+7+8+9;
 		assertEquals(sum,45);
 	}
+	public void testtrue() {
+		assertTrue(true);
+	}
 }
