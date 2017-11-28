@@ -13,14 +13,6 @@ node {
    stage('Results') {
       junit '**/target/surefire-reports/TEST-*.xml'
       archive 'target/*.jar'
-      publishHTML (target: [
-      	allowMissing: false,
-      	alwaysLinkToLastBuild: false,
-      	keepAll: true,
-      	reportDir: 'htmlOutput',
-      	reportFiles: 'index.html',
-      	reportName: "Full Stage View"
-    	])
-   }
+      }
     
 }
