@@ -116,5 +116,9 @@ public class AppTest
 		token = Testlogin.login(url, username, password);
 		TestFetchOrderHistoryByOwnerCode.testfetchorderhistorybyownercode(platform, uriParams, token, tradeDate);
 	}
-
+	public void testSUM() {
+		int sum = 0;
+		sum = 1+2+3+4+5+6+7+8+9;
+		assertEquals(sum,45);
+	}
 }
