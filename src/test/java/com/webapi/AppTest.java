@@ -63,7 +63,8 @@ public class AppTest
 	static double amount = 5000000.00;
 	static String portfoliocode = "FI-HTM-GOV";
 	static String ownercode = "APPLE";
-	    
+	
+	
    public void testloginpass() throws JsonProcessingException, JSONException {
 		uriParams.put("market", market);
 		uriParams.put("ownerCode", ownerCode);
