@@ -10,8 +10,10 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -61,6 +63,7 @@ public class AppTest
 	static double amount = 5000000.00;
 	static String portfoliocode = "FI-HTM-GOV";
 	static String ownercode = "APPLE";
+	
     
    public void testloginpass() throws JsonProcessingException, JSONException {
 		uriParams.put("market", market);
@@ -76,7 +79,26 @@ public class AppTest
 		uriParams.put("counterPartyCode", counterPartyCode);
 		uriParams.put("securityCode", securityCode);
 		token = Testlogin.login(url, username, password);
-		TestNewBulkOrder.testNewBulkOrder(url, uriParams, token, sourceId, gatewayRefId, destRefId, brokerCode, destSystem, msgType, department, tradeEngine, securityCode, counterPartyCode, ownerCode, investTxType, tradeDate, settleDate, userId, isLocked, status, sourceRefId, sendOrderId);
+		String uri = "http://"+url+"/trade/{market}/new/{ownerCode}/{counterPartyCode}";
+		UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(uri);
+		System.out.println(builder.buildAndExpand(uriParams).toUri());
+		RestTemplate restTemplate = new RestTemplate();
+		//CreateBody
+		ObjectMapper mapper = new ObjectMapper();
+		PlateformFIOrder platformFIOrder = new PlateformFIOrder();
+		platformFIOrder.setPlateformFIOrder(securityCode, counterPartyCode, ownerCode, investTxType, tradeDate, settleDate, userId, isLocked, status, sourceRefId, sendOrderId);
+		gateway_New_Bulk_Order newbulkorder = new gateway_New_Bulk_Order();
+		newbulkorder.setgateway_New_Bulk_Order(sourceId, gatewayRefId, destRefId, brokerCode, destSystem, msgType, department, tradeEngine, platformFIOrder);
+		String JsonString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(newbulkorder);
+		//setHeader
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Type", "application/json");
+		headers.set("WMSL-Token", token);
+		HttpEntity<String> entity = new HttpEntity<String>(JsonString, headers);
+		//send request
+		ResponseEntity<String> Response = restTemplate.exchange(builder.buildAndExpand(uriParams).toUri(), HttpMethod.POST, entity, String.class);
+		JSONObject userJson = new JSONObject(Response.getBody());
+		assertNotNull(userJson);
 	}
 	public void testCancelBulkOrder() throws Exception {
 		uriParams.put("market", market);
@@ -93,14 +115,6 @@ public class AppTest
 		uriParams.put("securityCode", securityCode);
 		token = Testlogin.login(url, username, password);
 		TestFetchOrderHistoryByOwnerCode.testfetchorderhistorybyownercode(platform, uriParams, token, tradeDate);
-	}
-	public void test00() {
-		int a=0;
-		int b=1;
-		assertEquals(1,a+b);
-	}
-	public void test01() {
-		assertTrue(true);
 	}
 
 }
