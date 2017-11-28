@@ -3,10 +3,6 @@ package com.webapi;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.json.JSONException;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-
 /**
  * Hello world!
  *
