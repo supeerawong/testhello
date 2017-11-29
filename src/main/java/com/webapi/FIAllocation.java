@@ -1,5 +1,6 @@
 package com.webapi;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -12,7 +13,7 @@ public class FIAllocation {
 	private String tradeEngine;
 	private String ownerCode;
 	private String counterPartyCode;
-	private List<Request> request;
+	private List<Request> request = new ArrayList<Request>();
 	
 	//gatewayRefId
 	public void setgatewayRefId(String gatewayRefId) {
@@ -72,8 +73,8 @@ public class FIAllocation {
 	
 	//request
 	public void setrequest(Request request) {
-		this.request = Stream.of(request).collect(Collectors.toList());
-		//this.request.add(request);
+		//this.request = Stream.of(request).collect(Collectors.toList());
+		this.request.add(request);
 	}
 	public List<Request> getrequest(){
 		return this.request;
