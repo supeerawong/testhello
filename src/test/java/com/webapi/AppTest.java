@@ -116,13 +116,13 @@ public class AppTest
 		token = Testlogin.login(url, username, password);
 		TestFetchOrderHistoryByOwnerCode.testfetchorderhistorybyownercode(platform, uriParams, token, tradeDate);
 	}
-	public void testSUM() {
-		int sum = 0;
-		sum = 1+2+3+4+5+6+7+8+9;
-		assertEquals(sum,45);
-	}
-	public void testtrue() {
-		assertTrue(true);
+	public void testFIAllocation() throws Exception{
+		uriParams.put("market", market);
+		uriParams.put("ownerCode", ownerCode);
+		uriParams.put("counterPartyCode", counterPartyCode);
+		uriParams.put("securityCode", securityCode);
+		token = Testlogin.login(url, username, password);
+		TestFIAllocation.testFIAllocation(platform, uriParams, token, gatewayRefId, destRefId, destSystem, msgType, tradeEngine, ownercode, counterPartyCode, preexecutionallocid, executionid, orderinvestid, investtxid, allocatedunit, allocatedcommission, allocatedvat, price, calcallocatedunit, activeflag, sourcerefid, createtime, amount, portfoliocode, ownerCode);
 	}
 	
 }
