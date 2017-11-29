@@ -73,6 +73,7 @@ public class FIAllocation {
 	//request
 	public void setrequest(Request request) {
 		this.request = Stream.of(request).collect(Collectors.toList());
+		//this.request.add(request);
 	}
 	public List<Request> getrequest(){
 		return this.request;

@@ -122,7 +122,7 @@ public class AppTest
 		uriParams.put("counterPartyCode", counterPartyCode);
 		uriParams.put("securityCode", securityCode);
 		token = Testlogin.login(url, username, password);
-		//TestFIAllocation.testFIAllocation(platform, uriParams, token, gatewayRefId, destRefId, destSystem, msgType, tradeEngine, ownercode, counterPartyCode, preexecutionallocid, executionid, orderinvestid, investtxid, allocatedunit, allocatedcommission, allocatedvat, price, calcallocatedunit, activeflag, sourcerefid, createtime, amount, portfoliocode, ownerCode);
+		TestFIAllocation.testFIAllocation(platform, uriParams, token, gatewayRefId, destRefId, destSystem, msgType, tradeEngine, ownercode, counterPartyCode, preexecutionallocid, executionid, orderinvestid, investtxid, allocatedunit, allocatedcommission, allocatedvat, price, calcallocatedunit, activeflag, sourcerefid, createtime, amount, portfoliocode, ownerCode);
 	}
 	
 }
